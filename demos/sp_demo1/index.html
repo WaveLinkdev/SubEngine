@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import { Engine } from "../../out/engine.js"
+        import { Actor } from "../../out/actor.js"
+        import { Sprite } from "../../out/components/sprite.js"
+        import { Transform } from "../../out/components/transform.js"
+
+        const engine = new Engine("canvas");
+
+        const player = new Actor();
+        player.bind(engine)
+        const transform = new Transform(player)
+        const sprite = new Sprite(player)
+
+        transform.position.y = 100
+        transform.position.x = 100
+
+        let direction = 1;
+
+        window.onkeydown = (event) => {
+            console.log(event);
+            if(event.repeat) return
+
+            if (event.key == "w") {
+                movingY += 1;
+            }
+
+            if (event.key == "s") {
+                movingY -= 1;
+            }
+
+            if(event.repeat) return
+
+            if (event.key == "d") {
+                movingX += 1;
+            }
+
+            if (event.key == "a") {
+                movingX -= 1;
+            }
+        }
+
+        window.onkeyup = (event) => {
+            if (event.key == "w") {
+                movingY -= 1;
+            }
+
+            if (event.key == "s") {
+                movingY += 1;
+            }
+
+            if (event.key == "d") {
+                movingX -= 1;
+            }
+
+            if (event.key == "a") {
+                movingX += 1;
+            }
+        }
+
+        let movingY = 0;
+        let movingX = 0;
+
+        engine.Ticker.add((d) => {
+            transform.position.y -= 10 * movingY;
+            transform.position.x += 10 * movingX;
+
+            console.log(movingY);
+        })
+
+        engine.start();
+    </script>
+
+    <canvas id="canvas" width="800" height="600"></canvas>
+</body>
+
+</html>
