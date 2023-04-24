@@ -4,7 +4,7 @@ import { Engine } from "./engine.js";
 import { Actor } from "./actor.js";
 
 export class Camera {
-    
+
     Engine: Engine;
     Position: Point = new Point(0, 0);
     Focus: Actor | null = null;
@@ -14,20 +14,30 @@ export class Camera {
         this.Engine = engine;
     }
 
-    setFocus (actor: Actor) {
+    setFocus(actor: Actor) {
         const transform = actor.GetComponent<Transform>(Transform);
-        if(transform) {
+
+        console.log(transform);
+
+
+        if (transform) {
             this.Focus = actor;
             this.FocusTransform = transform;
         }
     }
 
     update(delta: number) {
-        if(this.Focus) {
-            this.Position = this.FocusTransform!.position;
+        console.log(this.Focus, this.FocusTransform, this.FocusTransform?.position);
+
+
+        if (this.Focus != null || undefined) {
+            this.Position.x = -this.FocusTransform!.position.x + this.Engine.Renderer.app.renderer.width / 2;
+            this.Position.y = -this.FocusTransform!.position.y  + this.Engine.Renderer.app.renderer.height / 2;;
+            
         }
+        console.log(this.Position);
 
         this.Engine.Renderer.stage.position = this.Position;
-        
+
     }
 }

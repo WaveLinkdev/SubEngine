@@ -1,6 +1,6 @@
 import { Actor } from "../actor.js";
 import { Component, ComponentInterface, component, requires } from "../component.js";
-import { Container, Sprite as PixiSprite } from "pixi.js"
+import { Container, Sprite as PixiSprite, Graphics } from "pixi.js"
 import { Transform } from "./transform.js";
 
 @component

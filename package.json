@@ -12,8 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "@pixi/utils": "^7.2.4",
+    "@types/matter-js": "^0.18.2",
+    "matter-js": "^0.19.0",
     "nanoid": "^4.0.2",
     "pixi.js": "^7.2.4",
     "vite": "^4.3.1"
+  },
+  "devDependencies": {
+    "typescript": "5.1.0-dev.20230424"
   }
 }

@@ -10,6 +10,12 @@
 
 <body>
     <script type="module">
+        import {run} from "../../out/test.js"
+
+        run();
+    </script>
+    <script type="module">
+        return;
         import { Engine } from "../../out/engine.js"
         import { Actor } from "../../out/actor.js"
         import { Sprite } from "../../out/components/sprite.js"
@@ -22,13 +28,14 @@
         const transform = new Transform(player)
         const sprite = new Sprite(player)
 
-        transform.position.y = 100
-        transform.position.x = 100
+        const test = new Actor();
+        test.bind(engine)
+        const transform2 = new Transform(test)
+        const sprite2 = new Sprite(test)
 
         let direction = 1;
 
         window.onkeydown = (event) => {
-            console.log(event);
             if(event.repeat) return
 
             if (event.key == "w") {
@@ -74,11 +81,11 @@
         engine.Ticker.add((d) => {
             transform.position.y -= 10 * movingY;
             transform.position.x += 10 * movingX;
-
-            console.log(movingY);
         })
 
         engine.start();
+
+        engine.Camera.setFocus(player);
     </script>
 
     <canvas id="canvas" width="800" height="600"></canvas>
