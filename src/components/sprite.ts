@@ -18,7 +18,9 @@ export class Sprite extends Component implements ComponentInterface {
 
         this.Container = new Container();
         this.Sprite = PixiSprite.from('/static/untitled.png');
-        this.Transform = actor.GetComponent(Transform);
+
+        let transform = actor.GetComponent<Transform>(Transform);
+        if (transform) this.Transform = transform;
 
         this.Transform.AddMovable(this.Container);
 

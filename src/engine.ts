@@ -2,6 +2,7 @@ import { Renderer } from "./render.js";
 import { Actor } from "./actor.js";
 import { Camera } from "./camera.js";
 import { Ticker } from "pixi.js";
+import { Physcis as Physics } from "./physics.js"
 
 // Base export is Engine class
 export class Engine {
@@ -10,6 +11,7 @@ export class Engine {
     public Ticker: Ticker;
     public Renderer: Renderer;
     public Camera: Camera;
+    public Physics: Physics;
 
     constructor(target: HTMLCanvasElement | string) {
         if (typeof target == "string")
@@ -18,6 +20,7 @@ export class Engine {
         this.Renderer = new Renderer({ view: target });
         this.Ticker = this.Renderer.app.ticker;
         this.Camera = new Camera(this);
+        this.Physics = new Physics(this);
 
         console.log(this.Ticker);
     }

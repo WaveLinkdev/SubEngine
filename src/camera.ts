@@ -17,8 +17,6 @@ export class Camera {
     setFocus(actor: Actor) {
         const transform = actor.GetComponent<Transform>(Transform);
 
-        console.log(transform);
-
 
         if (transform) {
             this.Focus = actor;
@@ -27,15 +25,11 @@ export class Camera {
     }
 
     update(delta: number) {
-        console.log(this.Focus, this.FocusTransform, this.FocusTransform?.position);
-
-
         if (this.Focus != null || undefined) {
-            this.Position.x = -this.FocusTransform!.position.x + this.Engine.Renderer.app.renderer.width / 2;
-            this.Position.y = -this.FocusTransform!.position.y  + this.Engine.Renderer.app.renderer.height / 2;;
-            
+            this.Position.x = -this.FocusTransform!.Position.x + this.Engine.Renderer.app.renderer.width / 2;
+            this.Position.y = -this.FocusTransform!.Position.y + this.Engine.Renderer.app.renderer.height / 2;;
+
         }
-        console.log(this.Position);
 
         this.Engine.Renderer.stage.position = this.Position;
 

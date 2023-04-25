@@ -45,8 +45,9 @@ export class Actor {
         return (this.constructor as typeof Actor).ActorId;
     }
 
-    GetComponent<T extends Component>(component: typeof T): T | null {
-        return this.Components.get(component.ComponentId) as T || null;
+    GetComponent<T extends Component>(component: typeof Component): T {
+        console.log(component);
+        return this.Components.get(component.ComponentId) as T || undefined;
     }
 }
 
